@@ -1,0 +1,48 @@
+{
+	"name": "my-net",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "exploreradmin",
+			"password": "exploreradminpw"
+		},
+		"enableAuthentication": true,
+		"organization": "ManufacturerMSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"mychannel": {
+			"peers": {
+				"peer0.manufacturer.com": {}
+			}
+		}
+	},
+	"organizations": {
+		"ManufacturerMSP": {
+			"mspid": "ManufacturerMSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/manufacturer.com/users/Admin@manufacturer.com/msp/keystore/priv_sk"
+			},
+			"peers": ["peer0.manufacturer.com"],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/manufacturer.com/users/Admin@manufacturer.com/msp/signcerts/Admin@manufacturer.com-cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer0.manufacturer.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/manufacturer.com/peers/peer0.manufacturer.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.manufacturer.com:7051"
+		}
+	}
+}
